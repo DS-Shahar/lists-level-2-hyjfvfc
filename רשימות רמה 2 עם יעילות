@@ -1,0 +1,103 @@
+
+ public static Node<Integer> L2ex1(Node <Integer> l1, Node <Integer> l2) {
+		Node<Integer> h = new Node<Integer>(null);
+		Node<Integer> p = h;
+		Node<Integer> l11 = l1;
+		Node<Integer> l22 = l2;
+		while(l11!=null&&l22!=null)
+		{
+	    if(l11.getValue()>l22.getValue()){
+	        p.setNext(l22);
+		     p=p.getNext();
+		     l22=l22.getNext();
+	    }
+	    else{
+	          p.setNext(l11);
+		     p=p.getNext();
+		     l11=l11.getNext(); }  
+		       
+		}
+		if(l11==null){
+		   p.setNext(l22); 
+		}
+		else{
+		    p.setNext(l11);
+		}
+		return h.getNext();
+   
+ }
+הפעולה עוברת על כל האיברים בשתי הרסימות פעם אחת לכן הסיבוכיות היא 𝑂(𝑛+𝑚)
+  public static Node<Integer> L2ex2help(Node <Integer> p){
+      Node<Integer> x = p;
+      while(p.getNext()!=null){
+          if(p.getNext().getValue()<x.getNext().getValue()){
+              x=p;
+          }
+          p=p.getNext();    
+      }
+      return x;
+  }
+  public static Node<Integer> L2ex2(Node <Integer> p){
+      Node<Integer> h = new Node<Integer>(-1);
+       h.setNext(p);
+      	Node<Integer> x = new Node<Integer>(-1);
+		Node<Integer> k = x;
+		 while(h.getNext()!=null){
+		    x.setNext(L2ex2help(h).getNext());
+		    h=ex6(h,L2ex2help(h).getNext().getValue());
+		    x=x.getNext();
+		 }
+		 
+		return h.getNext();
+		 }
+הסיבוכיות של פעולת העזר היא  𝑂(𝑛)
+הסיבויות של הפעולה עצמה היא 𝑂(𝑛)
+לכן הסיכביות הכוללת היא 𝑂(𝑛2)
+  public static int L2ex3(Node <Integer> p, int num){       
+        Node<Integer> k = p;
+        int start=0;
+        int end=0;
+        while(k!=null){
+            if(k.getValue()!=num)
+            start++;
+            
+        if(k.getValue()==num){
+            k=k.getNext();
+            while(k!=null){
+                end++;
+                if(k.getValue()==num){
+                    end=0;
+                }
+                k=k.getNext();}
+                int sum=end+start;
+            return sum;
+        }
+        k=k.getNext();
+        }
+        return -1;}
+הםעולה עוברת על הרשימה(לולאה מכוננת)) 𝑂(𝑛2)
+  public static boolean L2ex4(Node <Integer> p){ 
+      while(p!=null){
+          if(isIn(p,p.getValue())){
+              return false;}
+             p=p.getNext();}
+             
+          return true;
+      }
+ בכל קריאה הפעולה עוברת על עצמה גם בפעולה עצמה וגם בפעולה ISIN 𝑂(𝑛2)
+
+public static Node<Integer> l2ex5(Node <Integer> p) {
+		Node<Integer> h = new Node<Integer>(-1);
+		Node<Integer> k = h;
+		while(p!=null){
+		 if(L2ex4(p)==true){
+		     Node<Integer> x = new Node<Integer>(p.getValue());
+		        k.setNext(x);
+		    	k = k.getNext();}
+		  
+		  p = p.getNext();}
+
+  	return h.getNext();}    
+הפעולה עוברת על הרשימה פעם אחת אך היא משמשת בפעולה התרגיל קודם שהסיבוכיות שלה היא𝑂(𝑛2) 
+לכן הסיבכיוצת של הפעולה היא 𝑂(𝑛3)
+} 
